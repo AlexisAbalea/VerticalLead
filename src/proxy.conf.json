@@ -1,0 +1,9 @@
+{
+  "/api": {
+    "target": "https://vz-d9937b30-2ef.b-cdn.net",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
