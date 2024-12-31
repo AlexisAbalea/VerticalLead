@@ -21,29 +21,28 @@ export class UploadVideoComponent {
   errorMessage: string = '';
 
   handleFileInput(event: any) {
-    console.log('passe event', event)
-    if (!event && event.target?.files?.length === 0) {
-      console.log('passe return 1')
+    if (!event || event.target?.files?.length === 0) {
+      console.log('No file selected for upload.')
       return;
     }
 
     const file = event.target.files[0];
 
     if (file.type !== 'video/mp4') {
-      console.log('passe return mp4')
+      console.log('File type is not supported. Only MP4 videos are allowed.')
       this.errorMessage = 'Only MP4 videos are allowed.';
       return;
     }
 
     const fileSize = file.size / 1024 / 1024;
     if (fileSize > 400) {
-      console.log('passe video trop grosse')
+      console.log('The selected video file size exceeds the 400 MB limit.')
       this.errorMessage = 'The video size must not exceed 400 MB.';
       return;
     }
 
     this.fileToUpload = file;
-    this.fileName = file!.name;
+    this.fileName = file.name;
   }
 
   uploadFileToActivity() {

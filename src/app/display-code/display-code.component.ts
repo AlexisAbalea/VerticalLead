@@ -28,10 +28,10 @@ export class DisplayCodeComponent implements OnInit {
   }
 
   generateIframe(idVideo: string) {
-    this.htmlIFrame = `<iframe src="https://iframe.mediadelivery.net/embed/350451/${idVideo}?autoplay=true&loop=false&muted=false&preload=true&responsive=true" allow="autoplay;encrypted-media;picture-in-picture;" style="border:none; border-radius: 10px;" allowfullscreen="true" width="280" height="500"></iframe>`;
+    this.htmlIFrame = `<iframe src="https://iframe.mediadelivery.net/embed/350451/${idVideo}?loop=false&muted=false&preload=true&responsive=true" allow="encrypted-media;picture-in-picture;" style="border:none; border-radius: 10px;" allowfullscreen="true" width="280" height="500"></iframe>`;
   }
 
-  copyClipboard(){
+  copyClipboard() {
     navigator.clipboard.writeText(this.htmlIFrame!);
   }
 }
