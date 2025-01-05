@@ -1,42 +1,43 @@
 <div class="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl w-full bg-white rounded-lg shadow-md p-8">
   <h2 class="text-3xl font-bold text-gray-800 text-center mb-4">Upload</h2>
   <p class="text-gray-600 text-center mb-6">
-    Optimize your sales funnel for mobile with perfectly formatted videos.
-    Upload and generate embedded content effortlessly.
+    Optimize your sales funnel for mobile with perfectly formatted videos. Upload and generate
+    embedded content effortlessly.
   </p>
 
   <div class="flex flex-col justify-between">
-  <button
-    (click)="fileInput.click()"
-
-    class="px-8 py-3 text-white bg-gradient-to-r from-gray-500 to-gray-700 rounded-md uppercase font-semibold tracking-wide hover:from-gray-700 hover:to-gray-500 transition-all duration-300">
-    Choose a video
-  </button>
-
-  <!-- Input masqué pour la sélection de fichier -->
-  <input
-    #fileInput
-    type="file"
-    accept="video/mp4"
-    (change)="handleFileInput($event)"
-    class="hidden"
-  />
-
-  @if (errorMessage) {
-    <div class="text-red-600 mt-4">{{ errorMessage }}</div>
-  }
-
-  @if (fileName) {
-    <div class="text-lg mb-4">
-      Selected video : <span class="font-semibold">{{ fileName }}</span>
-    </div>
-
     <button
-    (click)="uploadFileToActivity()"
-    class="px-8 py-3 mb-4 text-white bg-gradient-to-r from-blue-500 to-teal-500 rounded-md uppercase font-semibold tracking-wide hover:from-teal-500 hover:to-blue-500 transition-all duration-300"
+      (click)="fileInput.click()"
+      class="px-8 py-3 text-white bg-gradient-to-r from-gray-500 to-gray-700 rounded-md uppercase font-semibold tracking-wide hover:from-gray-700 hover:to-gray-500 transition-all duration-300"
     >
-    Upload
-  </button>
-}
+      Choose a video
+    </button>
+
+    <!-- Input masqué pour la sélection de fichier -->
+    <input
+      #fileInput
+      type="file"
+      accept="video/mp4"
+      (change)="handleFileInput($event)"
+      class="hidden"
+    />
+
+    @if (errorMessage) {
+      <div class="text-red-600 mt-4">{{ errorMessage }}</div>
+    }
+
+    @if (fileName) {
+      <div class="text-lg mb-4">
+        Selected video : <span class="font-semibold">{{ fileName }}</span>
+      </div>
+
+      <button
+        (click)="uploadFile()"
+        [disabled]="isUploading"
+        class="px-8 py-3 mb-4 text-white bg-gradient-to-r from-blue-500 to-teal-500 rounded-md uppercase font-semibold tracking-wide hover:from-teal-500 hover:to-blue-500 transition-all duration-300"
+      >
+        Upload
+      </button>
+    }
   </div>
 </div>
