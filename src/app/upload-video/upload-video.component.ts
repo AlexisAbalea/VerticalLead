@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StoreService } from './store.service';
+import { OptionVideoDto, UploadVideoDto } from './upload-video.dto';
 
 @Component({
   selector: 'app-upload-video',
@@ -19,6 +20,12 @@ export class UploadVideoComponent {
   errorMessage: string = '';
 
   isUploading: boolean = false;
+
+  addButton: boolean = false;
+
+  redirectLink: string = '';
+
+  buttonLabel: string = '';
 
   handleFileInput(event: any) {
     if (!event || event.target?.files?.length === 0) {
@@ -48,16 +55,22 @@ export class UploadVideoComponent {
   uploadFile() {
     if (this.fileToUpload) {
       this.isUploading = true;
-      this.fileUploadService.uploadVideo(this.fileToUpload).subscribe(
-        (data: any) => {
-          this.isUploading = false;
-          this.router.navigate(['/code-generated', { idVideo: data!.idVideo }]);
-        },
-        error => {
-          console.log('Erreur upload :', error);
-          this.isUploading = false;
-        },
-      );
+      let optionVideoDto: OptionVideoDto | undefined;
+      if (this.addButton) {
+        optionVideoDto = new OptionVideoDto(this.buttonLabel, this.redirectLink);
+      }
+      this.fileUploadService
+        .uploadVideo({ file: this.fileToUpload, option: optionVideoDto })
+        .subscribe({
+          next: (data: UploadVideoDto) => {
+            this.isUploading = false;
+            this.router.navigate(['/code-generated', { urlFile: data!.url }]);
+          },
+          error: error => {
+            console.log('Erreur upload :', error);
+            this.isUploading = false;
+          },
+        });
     }
   }
 }

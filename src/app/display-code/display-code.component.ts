@@ -10,14 +10,14 @@ export class DisplayCodeComponent implements OnInit {
   private router = inject(Router);
   private route: ActivatedRoute = inject(ActivatedRoute);
 
-  idVideo?: string;
+  urlFile?: string;
   htmlIFrame?: string;
 
   ngOnInit(): void {
-    const idVideo = this.route.snapshot.paramMap.get('idVideo');
-    if (idVideo) {
-      this.idVideo = idVideo;
-      this.generateIframe(idVideo);
+    const urlFile = this.route.snapshot.paramMap.get('urlFile');
+    if (urlFile) {
+      this.urlFile = urlFile;
+      this.generateIframe(urlFile);
     } else {
       this.goHome();
     }
@@ -27,8 +27,8 @@ export class DisplayCodeComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  generateIframe(idVideo: string) {
-    this.htmlIFrame = `<iframe src="https://iframe.mediadelivery.net/embed/350451/${idVideo}?loop=false&muted=false&preload=true&responsive=true" allow="encrypted-media;picture-in-picture;" style="border:none; border-radius: 10px;" allowfullscreen="true" width="280" height="500"></iframe>`;
+  generateIframe(urlFile: string) {
+    this.htmlIFrame = `<iframe src="${urlFile}" allow="encrypted-media;picture-in-picture;" style="border: none; border-radius: 10px" allowfullscreen="true" height="550" width="297"></iframe>`;
   }
 
   copyClipboard() {

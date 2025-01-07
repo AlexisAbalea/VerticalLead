@@ -28,7 +28,6 @@ export class AuthService {
       )
       .pipe(
         tap((response: UserDTO) => {
-          console.log('Login successful:', response);
           if (response.accessToken) {
             this.userConnected = response;
             localStorage.setItem('auth_token', response.accessToken);
@@ -38,12 +37,11 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    const token = localStorage.getItem('auth_token'); // Vérifie si le token existe
+    const token = localStorage.getItem('auth_token');
     return !!token;
   }
 
-  // Méthode pour se déconnecter
   logout(): void {
-    localStorage.removeItem('auth_token'); // Supprime le token
+    localStorage.removeItem('auth_token');
   }
 }
