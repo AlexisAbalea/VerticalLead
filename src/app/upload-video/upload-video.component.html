@@ -60,8 +60,12 @@
       }
       <button
         (click)="uploadFile()"
-        [disabled]="isUploading"
+        [disabled]="isUploading || (addButton && (!redirectLink || !buttonLabel))"
         class="px-8 py-3 mb-4 text-white bg-gradient-to-r from-blue-500 to-teal-500 rounded-md uppercase font-semibold tracking-wide hover:from-teal-500 hover:to-blue-500 transition-all duration-300"
+        [ngClass]="{
+          'opacity-50 cursor-not-allowed':
+            isUploading || (addButton && (!redirectLink || !buttonLabel)),
+        }"
       >
         Upload
       </button>

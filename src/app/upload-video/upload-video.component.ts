@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -6,7 +7,7 @@ import { OptionVideoDto, UploadVideoDto } from './upload-video.dto';
 
 @Component({
   selector: 'app-upload-video',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './upload-video.component.html',
   styleUrl: './upload-video.component.css',
 })
