@@ -12,6 +12,6 @@ export class AppComponent {
   title = 'VerticalLead';
 
   goHome(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/upload']);
   }
 }
