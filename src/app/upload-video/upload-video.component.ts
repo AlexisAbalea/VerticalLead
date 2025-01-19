@@ -2,13 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ValidUrlPipe } from '../shared/valid-url.pipe';
 import { StoreService } from './store.service';
 import { OptionVideoDto, UploadVideoDto } from './upload-video.dto';
 
 @Component({
   selector: 'app-upload-video',
-  imports: [FormsModule, CommonModule, ValidUrlPipe],
+  imports: [FormsModule, CommonModule],
   templateUrl: './upload-video.component.html',
   styleUrl: './upload-video.component.css',
 })
@@ -78,15 +77,6 @@ export class UploadVideoComponent {
             this.isUploading = false;
           },
         });
-    }
-  }
-
-  isValidUrl(url: string): boolean {
-    try {
-      new URL(url);
-      return true;
-    } catch (_) {
-      return false;
     }
   }
 }
