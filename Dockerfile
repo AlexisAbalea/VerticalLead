@@ -30,5 +30,5 @@ COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/local/app/dist/vertical-lead/browser/ /usr/share/nginx/html
 
 # Expose port 80
-EXPOSE 80   # HTTP
-EXPOSE 443  # HTTPS
+EXPOSE 80
+EXPOSE 443
