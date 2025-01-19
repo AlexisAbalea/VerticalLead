@@ -21,13 +21,13 @@ RUN npm run build -- --configuration=production
 # Use official nginx image as the base image
 FROM nginx:latest
 
+# Copy the build output to replace the default nginx contents.
+COPY --from=build /usr/local/app/dist/vertical-lead/browser/ /usr/share/nginx/html
+
 COPY ./certs/fullchain.pem /etc/ssl/certs/fullchain.pem
 COPY ./certs/privkey.pem /etc/ssl/certs/privkey.pem
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
-
-# Copy the build output to replace the default nginx contents.
-COPY --from=build /usr/local/app/dist/vertical-lead/browser/ /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
