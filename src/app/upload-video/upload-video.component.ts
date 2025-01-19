@@ -2,12 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ValidUrlPipe } from '../shared/valid-url.pipe';
 import { StoreService } from './store.service';
 import { OptionVideoDto, UploadVideoDto } from './upload-video.dto';
 
 @Component({
   selector: 'app-upload-video',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, ValidUrlPipe],
   templateUrl: './upload-video.component.html',
   styleUrl: './upload-video.component.css',
 })
@@ -28,29 +29,34 @@ export class UploadVideoComponent {
 
   buttonLabel: string = '';
 
+  videoInMemory: string | null = null;
+
   handleFileInput(event: any) {
     if (!event || event.target?.files?.length === 0) {
-      console.log('No file selected for upload.');
       return;
     }
 
     const file = event.target.files[0];
 
     if (file.type !== 'video/mp4') {
-      console.log('File type is not supported. Only MP4 videos are allowed.');
       this.errorMessage = 'Only MP4 videos are allowed.';
       return;
     }
 
     const fileSize = file.size / 1024 / 1024;
     if (fileSize > 400) {
-      console.log('The selected video file size exceeds the 400 MB limit.');
       this.errorMessage = 'The video size must not exceed 400 MB.';
       return;
     }
 
     this.fileToUpload = file;
     this.fileName = file.name;
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      this.videoInMemory = fileReader.result as string; // URL temporaire de la vidéo
+    };
+
+    fileReader.readAsDataURL(file);
   }
 
   uploadFile() {
@@ -72,6 +78,15 @@ export class UploadVideoComponent {
             this.isUploading = false;
           },
         });
+    }
+  }
+
+  isValidUrl(url: string): boolean {
+    try {
+      new URL(url);
+      return true;
+    } catch (_) {
+      return false;
     }
   }
 }
