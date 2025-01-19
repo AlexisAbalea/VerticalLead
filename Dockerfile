@@ -21,8 +21,8 @@ RUN npm run build -- --configuration=production
 # Use official nginx image as the base image
 FROM nginx:latest
 
-COPY ../certs/fullchain.pem /etc/ssl/certs/fullchain.pem
-COPY ../certs/privkey.pem /etc/ssl/certs/privkey.pem
+COPY ./certs/fullchain.pem /etc/ssl/certs/fullchain.pem
+COPY ./certs/privkey.pem /etc/ssl/certs/privkey.pem
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
