@@ -18,6 +18,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthService,
   ) {
+    console.log('LoginComponent constructor');
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
