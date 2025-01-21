@@ -30,6 +30,10 @@ export class UploadVideoComponent {
 
   videoInMemory: string | null = null;
 
+  buttonPosition: string = 'top-left';
+
+  buttonColor: string = '#000000';
+
   handleFileInput(event: any) {
     if (!event || event.target?.files?.length === 0) {
       return;
@@ -63,7 +67,12 @@ export class UploadVideoComponent {
       this.isUploading = true;
       let optionVideoDto: OptionVideoDto | undefined;
       if (this.addButton) {
-        optionVideoDto = new OptionVideoDto(this.buttonLabel, this.redirectLink);
+        optionVideoDto = new OptionVideoDto(
+          this.buttonLabel,
+          this.redirectLink,
+          this.buttonPosition,
+          this.buttonColor,
+        );
       }
       this.fileUploadService
         .uploadVideo({ file: this.fileToUpload, option: optionVideoDto })
