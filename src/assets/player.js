@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const scriptTag = document.querySelector("script[src$='assets/player.js']");
+  const scriptTag = document.querySelector("script[src*='player']");
   // Récupérer l'ID de la vidéo depuis l'attribut data-video-id
   const videoId = scriptTag.getAttribute('data-video-id');
 
