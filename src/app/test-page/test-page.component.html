@@ -1,56 +1,29 @@
-<!doctype html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Site Bidon</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      header {
-        background-color: #4caf50;
-        color: white;
-        padding: 1em;
-        text-align: center;
-        width: 100%;
-      }
-      main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        padding: 2em;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>Bienvenue sur notre site bidon</h1>
-    </header>
-    <main>
-      <section>
-        <h2>À propos de nous</h2>
-        <div style="display: flex; justify-content: center; width: 100%">
-          <iframe
-            src="https://verticalead.fr:3000/public/generated-pages/eaf4057b-0419-4c78-9e61-f016dabcac0f/1738685815726-video_test_upload2.mp4.html"
-            allow="encrypted-media;picture-in-picture;"
-            style="border: none; border-radius: 10px"
-            allowfullscreen="true"
-            height="550"
-            width="297"
-          ></iframe>
-        </div>
-        <p>
-          Nous sommes une entreprise fictive dédiée à fournir des services imaginaires de la plus
-          haute qualité.
-        </p>
-      </section>
-    </main>
-  </body>
-</html>
+<style>
+  header {
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    width: 100%;
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+</style>
+<script src="player.js" data-video-id="02aa0f43-ce9a-4fcb-a543-b435cec2ff78"></script>
+<header>
+  <h1>Bienvenue sur notre site bidon</h1>
+</header>
+<main>
+  <section>
+    <h2>Ã€ propos de nous</h2>
+    <div style="display: flex; justify-content: center; width: 100%"></div>
+    <p>
+      Nous sommes une entreprise fictive dÃ©diÃ©e Ã  fournir des services imaginaires de la plus
+      haute qualitÃ©.
+    </p>
+    <div id="vertical-player"></div>
+  </section>
+</main>

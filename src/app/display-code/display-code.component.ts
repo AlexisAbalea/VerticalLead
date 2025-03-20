@@ -10,14 +10,13 @@ export class DisplayCodeComponent implements OnInit {
   private router = inject(Router);
   private route: ActivatedRoute = inject(ActivatedRoute);
 
-  urlFile?: string;
-  htmlIFrame?: string;
+  scriptToCopy?: string;
+  divVerticalPlayer = `<div id="vertical-player"></div>`;
 
   ngOnInit(): void {
-    const urlFile = this.route.snapshot.paramMap.get('urlFile');
-    if (urlFile) {
-      this.urlFile = urlFile;
-      this.generateIframe(urlFile);
+    const idVideo = this.route.snapshot.paramMap.get('idVideo');
+    if (idVideo) {
+      this.generateScript(idVideo);
     } else {
       this.goHome();
     }
@@ -27,11 +26,11 @@ export class DisplayCodeComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  generateIframe(urlFile: string) {
-    this.htmlIFrame = `<iframe src="${urlFile}" allow="encrypted-media;picture-in-picture;" style="border: none; border-radius: 10px" allowfullscreen="true" height="550" width="297"></iframe>`;
+  generateScript(idVideo: string) {
+    this.scriptToCopy = `<script src="player-vertical.js" data-video-id="${idVideo}"></script>`;
   }
 
-  copyClipboard() {
-    navigator.clipboard.writeText(this.htmlIFrame!);
+  copyClipboard(code: string) {
+    navigator.clipboard.writeText(code);
   }
 }

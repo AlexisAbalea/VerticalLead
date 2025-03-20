@@ -1,0 +1,17 @@
+<div class="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  @if (cards.length === 0) {
+    <div class="text-center text-gray-600">No videos found</div>
+  }
+  @for (card of cards; track $index) {
+    <app-clickable-card
+      [title]="card.title"
+      [date]="card.date"
+      [size]="card.size"
+      [duration]="card.duration"
+      [link]="card.link"
+      [linkName]="card.linkName"
+      (click)="onCardClick(card)"
+      class="cursor-pointer"
+    ></app-clickable-card>
+  }
+</div>

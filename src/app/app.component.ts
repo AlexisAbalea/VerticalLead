@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,5 @@ import { Router, RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  private router = inject(Router);
   title = 'VerticalLead';
-
-  goHome(): void {
-    this.router.navigate(['/upload']);
-  }
 }
