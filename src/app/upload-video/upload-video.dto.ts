@@ -1,8 +1,8 @@
 export class UploadVideoDto {
-  url: string;
+  idVideo: string;
 
-  constructor(url: string) {
-    this.url = url;
+  constructor(idVideo: string) {
+    this.idVideo = idVideo;
   }
 }
 

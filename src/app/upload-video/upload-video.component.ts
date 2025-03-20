@@ -79,7 +79,7 @@ export class UploadVideoComponent {
         .subscribe({
           next: (data: UploadVideoDto) => {
             this.isUploading = false;
-            this.router.navigate(['/code-generated', { urlFile: data!.url }]);
+            this.router.navigate(['/code-generated', { idVideo: data!.idVideo }]);
           },
           error: error => {
             console.log('Erreur upload :', error);
