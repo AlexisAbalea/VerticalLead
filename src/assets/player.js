@@ -1,11 +1,11 @@
-document.addEventListener("DOMContentLoaded", function () {
-  playerContainer = document.getElementById("vertical-player");
+document.addEventListener('DOMContentLoaded', function () {
+  playerContainer = document.getElementById('vertical-player');
   if (!playerContainer) {
-    console.error("Element #vertical-player not found");
+    console.error('Element #vertical-player not found');
   }
-  const videoId = playerContainer.getAttribute("data-video-id");
+  const videoId = playerContainer.getAttribute('data-video-id');
   if (!videoId) {
-    console.error("Element #vertical-player not found");
+    console.error('Element #vertical-player not found');
     return;
   }
 
@@ -13,112 +13,113 @@ document.addEventListener("DOMContentLoaded", function () {
   const videoUrl = `https://vz-d9937b30-2ef.b-cdn.net/${videoId}/play_360p.mp4`;
 
   // Sélectionner l'élément cible
-  playerContainer = document.getElementById("vertical-player");
+  playerContainer = document.getElementById('vertical-player');
   if (!playerContainer) {
     return;
   }
   // Créer l'élément vidéo
-  const video = document.createElement("video");
+  const video = document.createElement('video');
   video.src = videoUrl;
-  video.style.width = "100%";
-  video.style.height = "100%";
-  video.style.backgroundColor = "#000";
+  video.style.width = '100%';
+  video.style.height = '100%';
+  video.style.backgroundColor = '#000';
+  video.playsInline = true;
 
   // Créer le conteneur principal
-  const videoWrapper = document.createElement("div");
-  videoWrapper.style.position = "relative";
-  videoWrapper.style.width = "297px";
-  videoWrapper.style.height = "550px";
-  videoWrapper.style.margin = "0 auto";
-  videoWrapper.style.display = "flex";
-  videoWrapper.style.alignItems = "center";
-  videoWrapper.style.justifyContent = "center";
+  const videoWrapper = document.createElement('div');
+  videoWrapper.style.position = 'relative';
+  videoWrapper.style.width = '297px';
+  videoWrapper.style.height = '550px';
+  videoWrapper.style.margin = '0 auto';
+  videoWrapper.style.display = 'flex';
+  videoWrapper.style.alignItems = 'center';
+  videoWrapper.style.justifyContent = 'center';
 
   // Créer un conteneur pour la vidéo
-  const videoContainer = document.createElement("div");
-  videoContainer.style.width = "100%";
-  videoContainer.style.display = "flex";
-  videoContainer.style.alignItems = "center";
-  videoContainer.style.justifyContent = "center";
+  const videoContainer = document.createElement('div');
+  videoContainer.style.width = '100%';
+  videoContainer.style.display = 'flex';
+  videoContainer.style.alignItems = 'center';
+  videoContainer.style.justifyContent = 'center';
 
   // Créer le bouton play central
-  const playButton = document.createElement("button");
+  const playButton = document.createElement('button');
   playButton.innerHTML = playLargeSvg;
-  playButton.style.position = "absolute";
-  playButton.style.top = "50%";
-  playButton.style.left = "50%";
-  playButton.style.transform = "translate(-50%, -50%)";
-  playButton.style.background = "none";
-  playButton.style.border = "none";
-  playButton.style.cursor = "pointer";
-  playButton.style.zIndex = "2";
+  playButton.style.position = 'absolute';
+  playButton.style.top = '50%';
+  playButton.style.left = '50%';
+  playButton.style.transform = 'translate(-50%, -50%)';
+  playButton.style.background = 'none';
+  playButton.style.border = 'none';
+  playButton.style.cursor = 'pointer';
+  playButton.style.zIndex = '2';
 
   // Créer la barre de contrôles
-  const controlsBar = document.createElement("div");
-  controlsBar.style.position = "absolute";
-  controlsBar.style.bottom = "10px";
-  controlsBar.style.left = "0";
-  controlsBar.style.right = "0";
-  controlsBar.style.background = "rgba(0, 0, 0, 0.7)";
-  controlsBar.style.padding = "5px 10px";
-  controlsBar.style.display = "flex";
-  controlsBar.style.alignItems = "center";
-  controlsBar.style.justifyContent = "space-between";
-  controlsBar.style.opacity = "0";
-  controlsBar.style.transition = "opacity 0.3s";
-  controlsBar.style.zIndex = "2";
-  controlsBar.style.borderBottomLeftRadius = "4px";
-  controlsBar.style.borderBottomRightRadius = "4px";
+  const controlsBar = document.createElement('div');
+  controlsBar.style.position = 'absolute';
+  controlsBar.style.bottom = '10px';
+  controlsBar.style.left = '0';
+  controlsBar.style.right = '0';
+  controlsBar.style.background = 'rgba(0, 0, 0, 0.7)';
+  controlsBar.style.padding = '5px 10px';
+  controlsBar.style.display = 'flex';
+  controlsBar.style.alignItems = 'center';
+  controlsBar.style.justifyContent = 'space-between';
+  controlsBar.style.opacity = '0';
+  controlsBar.style.transition = 'opacity 0.3s';
+  controlsBar.style.zIndex = '2';
+  controlsBar.style.borderBottomLeftRadius = '4px';
+  controlsBar.style.borderBottomRightRadius = '4px';
 
   // Créer le bouton play/pause dans la barre de contrôles
-  const playPauseButton = document.createElement("button");
+  const playPauseButton = document.createElement('button');
   playPauseButton.innerHTML = playSvg;
-  playPauseButton.style.background = "none";
-  playPauseButton.style.border = "none";
-  playPauseButton.style.cursor = "pointer";
+  playPauseButton.style.background = 'none';
+  playPauseButton.style.border = 'none';
+  playPauseButton.style.cursor = 'pointer';
 
   // Créer le bouton fullscreen
-  const fullscreenButton = document.createElement("button");
+  const fullscreenButton = document.createElement('button');
   fullscreenButton.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="white">
           <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
       </svg>`;
-  fullscreenButton.style.background = "none";
-  fullscreenButton.style.border = "none";
-  fullscreenButton.style.cursor = "pointer";
+  fullscreenButton.style.background = 'none';
+  fullscreenButton.style.border = 'none';
+  fullscreenButton.style.cursor = 'pointer';
 
   // Créer le bouton rouge "bonjour"
-  const bonjourButton = document.createElement("button");
-  bonjourButton.textContent = "bonjour";
-  bonjourButton.style.position = "absolute";
-  bonjourButton.style.bottom = "50px";
-  bonjourButton.style.right = "10px";
-  bonjourButton.style.background = "#ff0000";
-  bonjourButton.style.color = "white";
-  bonjourButton.style.border = "none";
-  bonjourButton.style.padding = "8px 16px";
-  bonjourButton.style.borderRadius = "4px";
-  bonjourButton.style.cursor = "pointer";
-  bonjourButton.style.zIndex = "2";
-  bonjourButton.style.fontSize = "14px";
-  bonjourButton.style.fontWeight = "bold";
-  bonjourButton.style.transition = "opacity 0.3s";
-  bonjourButton.style.opacity = "1";
+  const bonjourButton = document.createElement('button');
+  bonjourButton.textContent = 'bonjour';
+  bonjourButton.style.position = 'absolute';
+  bonjourButton.style.bottom = '50px';
+  bonjourButton.style.right = '10px';
+  bonjourButton.style.background = '#ff0000';
+  bonjourButton.style.color = 'white';
+  bonjourButton.style.border = 'none';
+  bonjourButton.style.padding = '8px 16px';
+  bonjourButton.style.borderRadius = '4px';
+  bonjourButton.style.cursor = 'pointer';
+  bonjourButton.style.zIndex = '2';
+  bonjourButton.style.fontSize = '14px';
+  bonjourButton.style.fontWeight = 'bold';
+  bonjourButton.style.transition = 'opacity 0.3s';
+  bonjourButton.style.opacity = '1';
 
   // Créer le conteneur de volume
-  const volumeContainer = document.createElement("div");
-  volumeContainer.style.display = "flex";
-  volumeContainer.style.alignItems = "center";
-  volumeContainer.style.gap = "5px";
-  volumeContainer.style.position = "relative";
+  const volumeContainer = document.createElement('div');
+  volumeContainer.style.display = 'flex';
+  volumeContainer.style.alignItems = 'center';
+  volumeContainer.style.gap = '5px';
+  volumeContainer.style.position = 'relative';
 
   // Créer le bouton de volume
-  const volumeButton = document.createElement("button");
+  const volumeButton = document.createElement('button');
   volumeButton.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="white">
           <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
       </svg>`;
-  volumeButton.style.background = "none";
-  volumeButton.style.border = "none";
-  volumeButton.style.cursor = "pointer";
+  volumeButton.style.background = 'none';
+  volumeButton.style.border = 'none';
+  volumeButton.style.cursor = 'pointer';
 
   // Assembler les éléments de volume
   volumeContainer.appendChild(volumeButton);
@@ -127,9 +128,9 @@ document.addEventListener("DOMContentLoaded", function () {
   controlsBar.appendChild(playPauseButton);
   controlsBar.appendChild(volumeContainer);
   controlsBar.appendChild(fullscreenButton);
-  controlsBar.style.justifyContent = "space-between";
-  controlsBar.style.gap = "10px";
-  fullscreenButton.style.marginLeft = "auto";
+  controlsBar.style.justifyContent = 'space-between';
+  controlsBar.style.gap = '10px';
+  fullscreenButton.style.marginLeft = 'auto';
   videoContainer.appendChild(video);
   videoWrapper.appendChild(videoContainer);
   videoWrapper.appendChild(playButton);
@@ -142,15 +143,15 @@ document.addEventListener("DOMContentLoaded", function () {
   let isMobileView = window.innerWidth <= 768;
 
   // Mettre à jour isMobileView lors du redimensionnement de la fenêtre
-  window.addEventListener("resize", () => {
+  window.addEventListener('resize', () => {
     isMobileView = window.innerWidth <= 768;
   });
 
   // Gérer le clic sur la vidéo
-  video.addEventListener("click", () => {
+  video.addEventListener('click', () => {
     if (video.paused) {
       video.play();
-      playButton.style.display = "none";
+      playButton.style.display = 'none';
       playPauseButton.innerHTML = pauseSvg;
       if (isFirstPlay) {
         enterFullscreen();
@@ -158,24 +159,24 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     } else {
       video.pause();
-      playButton.style.display = "block";
+      playButton.style.display = 'block';
       playPauseButton.innerHTML = playSvg;
     }
   });
 
   // Gérer l'affichage/masquage des contrôles au survol
-  videoWrapper.addEventListener("mouseenter", () => {
-    controlsBar.style.opacity = "1";
+  videoWrapper.addEventListener('mouseenter', () => {
+    controlsBar.style.opacity = '1';
   });
 
-  videoWrapper.addEventListener("mouseleave", () => {
-    controlsBar.style.opacity = "0";
+  videoWrapper.addEventListener('mouseleave', () => {
+    controlsBar.style.opacity = '0';
   });
 
   // Gérer le clic sur le bouton play central
-  playButton.addEventListener("click", () => {
+  playButton.addEventListener('click', () => {
     video.play();
-    playButton.style.display = "none";
+    playButton.style.display = 'none';
     playPauseButton.innerHTML = pauseSvg;
     if (isFirstPlay) {
       enterFullscreen();
@@ -184,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Gérer le clic sur le bouton play/pause dans la barre de contrôles
-  playPauseButton.addEventListener("click", () => {
+  playPauseButton.addEventListener('click', () => {
     if (video.paused) {
       video.play();
       playPauseButton.innerHTML = pauseSvg;
@@ -199,19 +200,19 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Gérer l'événement play pour masquer le bouton play central
-  video.addEventListener("play", () => {
-    playButton.style.display = "none";
+  video.addEventListener('play', () => {
+    playButton.style.display = 'none';
     playPauseButton.innerHTML = pauseSvg;
   });
 
   // Gérer l'événement pause pour afficher le bouton play central
-  video.addEventListener("pause", () => {
-    playButton.style.display = "block";
+  video.addEventListener('pause', () => {
+    playButton.style.display = 'block';
     playPauseButton.innerHTML = playSvg;
   });
 
   // Gérer le clic sur le bouton fullscreen
-  fullscreenButton.addEventListener("click", () => {
+  fullscreenButton.addEventListener('click', () => {
     if (isFullscreen) {
       exitFullscreen();
     } else {
@@ -220,14 +221,14 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Gérer la touche Échap
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && isFullscreen) {
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && isFullscreen) {
       exitFullscreen();
     }
   });
 
   // Gérer le volume
-  volumeButton.addEventListener("click", () => {
+  volumeButton.addEventListener('click', () => {
     if (video.volume > 0) {
       video.volume = 0;
       volumeButton.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="white">
@@ -245,33 +246,33 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!isFullscreen) {
       isFullscreen = true;
       createOverlay();
-      videoWrapper.style.position = "fixed";
-      videoWrapper.style.top = "50%";
-      videoWrapper.style.left = "50%";
-      videoWrapper.style.transform = "translate(-50%, -50%)";
-      videoWrapper.style.maxWidth = "none";
-      videoWrapper.style.width = "100vh";
-      videoWrapper.style.height = "100vh";
-      videoWrapper.style.margin = "0";
-      videoWrapper.style.display = "flex";
-      videoWrapper.style.alignItems = "center";
-      videoWrapper.style.justifyContent = "center";
-      videoWrapper.style.zIndex = "9999";
+      videoWrapper.style.position = 'fixed';
+      videoWrapper.style.top = '50%';
+      videoWrapper.style.left = '50%';
+      videoWrapper.style.transform = 'translate(-50%, -50%)';
+      videoWrapper.style.maxWidth = 'none';
+      videoWrapper.style.width = '100vh';
+      videoWrapper.style.height = '100vh';
+      videoWrapper.style.margin = '0';
+      videoWrapper.style.display = 'flex';
+      videoWrapper.style.alignItems = 'center';
+      videoWrapper.style.justifyContent = 'center';
+      videoWrapper.style.zIndex = '9999';
 
-      videoContainer.style.width = "100vh";
-      videoContainer.style.height = "100vh";
-      video.style.width = "100%";
-      video.style.height = "100%";
-      video.style.objectFit = "contain";
+      videoContainer.style.width = '100vh';
+      videoContainer.style.height = '100vh';
+      video.style.width = '100%';
+      video.style.height = '100%';
+      video.style.objectFit = 'contain';
 
-      controlsBar.style.width = "33.33%";
-      controlsBar.style.left = "50%";
-      controlsBar.style.transform = "translateX(-50%)";
-      controlsBar.style.right = "auto";
+      controlsBar.style.width = '33.33%';
+      controlsBar.style.left = '50%';
+      controlsBar.style.transform = 'translateX(-50%)';
+      controlsBar.style.right = 'auto';
 
       // Ajuster la position du bouton bonjour en mode plein écran
-      bonjourButton.style.bottom = "60px";
-      bonjourButton.style.right = "20px";
+      bonjourButton.style.bottom = '60px';
+      bonjourButton.style.right = '20px';
     }
   }
 
@@ -279,52 +280,52 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isFullscreen) {
       isFullscreen = false;
       removeOverlay();
-      videoWrapper.style.position = "relative";
-      videoWrapper.style.top = "auto";
-      videoWrapper.style.left = "auto";
-      videoWrapper.style.transform = "none";
-      videoWrapper.style.width = "297px";
-      videoWrapper.style.height = "550px";
-      videoWrapper.style.margin = "0 auto";
-      videoWrapper.style.display = "flex";
-      videoWrapper.style.alignItems = "center";
-      videoWrapper.style.justifyContent = "center";
-      videoWrapper.style.zIndex = "auto";
+      videoWrapper.style.position = 'relative';
+      videoWrapper.style.top = 'auto';
+      videoWrapper.style.left = 'auto';
+      videoWrapper.style.transform = 'none';
+      videoWrapper.style.width = '297px';
+      videoWrapper.style.height = '550px';
+      videoWrapper.style.margin = '0 auto';
+      videoWrapper.style.display = 'flex';
+      videoWrapper.style.alignItems = 'center';
+      videoWrapper.style.justifyContent = 'center';
+      videoWrapper.style.zIndex = 'auto';
 
-      videoContainer.style.width = "100%";
-      videoContainer.style.height = "100%";
-      video.style.width = "100%";
-      video.style.height = "100%";
-      video.style.objectFit = "cover";
+      videoContainer.style.width = '100%';
+      videoContainer.style.height = '100%';
+      video.style.width = '100%';
+      video.style.height = '100%';
+      video.style.objectFit = 'cover';
 
-      controlsBar.style.width = "auto";
-      controlsBar.style.left = "0";
-      controlsBar.style.right = "0";
-      controlsBar.style.bottom = "0";
-      controlsBar.style.transform = "none";
-      controlsBar.style.padding = "5px 10px";
+      controlsBar.style.width = 'auto';
+      controlsBar.style.left = '0';
+      controlsBar.style.right = '0';
+      controlsBar.style.bottom = '0';
+      controlsBar.style.transform = 'none';
+      controlsBar.style.padding = '5px 10px';
 
       // Restaurer la position du bouton bonjour
-      bonjourButton.style.bottom = "50px";
-      bonjourButton.style.right = "10px";
+      bonjourButton.style.bottom = '50px';
+      bonjourButton.style.right = '10px';
     }
   }
 
   function createOverlay() {
-    const overlay = document.createElement("div");
-    overlay.id = "video-overlay";
-    overlay.style.position = "fixed";
-    overlay.style.top = "0";
-    overlay.style.left = "0";
-    overlay.style.width = "100%";
-    overlay.style.height = "100%";
-    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
-    overlay.style.zIndex = "1";
+    const overlay = document.createElement('div');
+    overlay.id = 'video-overlay';
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    overlay.style.zIndex = '1';
     document.body.appendChild(overlay);
   }
 
   function removeOverlay() {
-    const overlay = document.getElementById("video-overlay");
+    const overlay = document.getElementById('video-overlay');
     if (overlay) {
       overlay.remove();
     }
@@ -336,7 +337,7 @@ const pauseSvg = `<svg width="18px" height="18px" viewBox="0 0 16 16" fill="none
 <path d="M14 1H9V15H14V1Z" fill="#ffffff"/>
 </svg>`;
 
-const playSvg = `<svg fill="#ffffff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+const playSvg = `<svg fill="#ffffff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 	 width="17px" height="17px" viewBox="0 0 163.861 163.861"
 	 xml:space="preserve">
 <g>
@@ -345,7 +346,7 @@ const playSvg = `<svg fill="#ffffff" version="1.1" id="Capa_1" xmlns="http://www
 </g>
 </svg>`;
 
-const playLargeSvg = `<svg fill="#ffffff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+const playLargeSvg = `<svg fill="#ffffff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 	 width="50px" height="50px" viewBox="0 0 163.861 163.861"
 	 xml:space="preserve">
 <g>
