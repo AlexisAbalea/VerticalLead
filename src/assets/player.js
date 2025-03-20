@@ -9,9 +9,8 @@ function getCurrentScriptName() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  const scriptTag = document.querySelector(`script[src$='${getCurrentScriptName()}']`);
   // Récupérer l'ID de la vidéo depuis l'attribut data-video-id
-  const videoId = scriptTag.getAttribute('data-video-id');
+  const videoId = document.getElementById('vertical-player').getAttribute('data-video-id');
 
   if (!videoId) {
     return;
