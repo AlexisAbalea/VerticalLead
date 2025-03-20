@@ -1,29 +1,20 @@
-function getCurrentScriptName() {
-  try {
-    throw new Error();
-  } catch (err) {
-    const stackLines = err.stack.split('\n');
-    const callerLine = stackLines[stackLines.length - 1] || stackLines[1];
-    return callerLine.match(/(\/|\\)([^\/\\]+\.js)/)[2]; // Extrait le fichier JS
-  }
-}
-
 document.addEventListener('DOMContentLoaded', function () {
   // Récupérer l'ID de la vidéo depuis l'attribut data-video-id
-  const videoId = document.getElementById('vertical-player').getAttribute('data-video-id');
-
+  playerContainer = document.getElementById('vertical-player');
+  console.log('playerContainer :', playerContainer);
+  if (!playerContainer) {
+    console.error('Element #vertical-player not found');
+  }
+  const videoId = playerContainer.getAttribute('data-video-id');
+  console.log('video id :', videoId);
   if (!videoId) {
+    console.error('Element #vertical-player not found');
     return;
   }
 
   // Construire l'URL de la vidéo
   const videoUrl = `https://vz-d9937b30-2ef.b-cdn.net/${videoId}/play_360p.mp4`;
 
-  // Sélectionner l'élément cible
-  playerContainer = document.getElementById('vertical-player');
-  if (!playerContainer) {
-    return;
-  }
   // Créer l'élément vidéo
   const video = document.createElement('video');
   video.src = videoUrl;
