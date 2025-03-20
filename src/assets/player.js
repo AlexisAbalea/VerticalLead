@@ -1,5 +1,15 @@
+function getCurrentScriptName() {
+  try {
+    throw new Error();
+  } catch (err) {
+    const stackLines = err.stack.split('\n');
+    const callerLine = stackLines[stackLines.length - 1] || stackLines[1];
+    return callerLine.match(/(\/|\\)([^\/\\]+\.js)/)[2]; // Extrait le fichier JS
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
-  const scriptTag = document.querySelector("script[src*='player']");
+  const scriptTag = document.querySelector(`script[src$='${getCurrentScriptName()}']`);
   // Récupérer l'ID de la vidéo depuis l'attribut data-video-id
   const videoId = scriptTag.getAttribute('data-video-id');
 
