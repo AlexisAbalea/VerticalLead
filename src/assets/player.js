@@ -29,6 +29,33 @@ document.addEventListener("DOMContentLoaded", function () {
       video.setAttribute("controlsList", "nodownload");
       video.setAttribute("disablePictureInPicture", "");
       video.setAttribute("disableRemotePlayback", "");
+      video.setAttribute("preload", "auto");
+      video.setAttribute("autoplay", "");
+      video.setAttribute("muted", ""); // iOS nécessite souvent muted pour autoplay
+  
+      // Créer un élément pour afficher les erreurs
+      const errorDisplay = document.createElement("div");
+      errorDisplay.style.color = "red";
+      errorDisplay.style.textAlign = "center";
+      errorDisplay.style.padding = "10px";
+      errorDisplay.style.display = "none";
+  
+      // Ajouter des logs pour le débogage
+      video.addEventListener("error", (e) => {
+          console.error("Erreur de chargement de la vidéo:", e);
+          errorDisplay.style.display = "block";
+          errorDisplay.textContent = `Erreur de chargement de la vidéo: ${e.target.error.message}`;
+      });
+      
+      video.addEventListener("loadedmetadata", () => {
+          console.log("Métadonnées de la vidéo chargées");
+          errorDisplay.style.display = "none";
+      });
+      
+      video.addEventListener("canplay", () => {
+          console.log("La vidéo peut être lue");
+          errorDisplay.style.display = "none";
+      });
   
       // Créer le conteneur principal
       const videoWrapper = document.createElement("div");
@@ -143,6 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
       videoWrapper.appendChild(controlsBar);
       videoWrapper.appendChild(bonjourButton);
       playerContainer.appendChild(videoWrapper);
+      playerContainer.appendChild(errorDisplay);
   
       let isFullscreen = false;
       let isFirstPlay = true;
