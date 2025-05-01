@@ -26,3 +26,15 @@
   </section>
 </main>
 <script src="assets/player.js"></script>
+<script>
+  window.onerror = function (message, source, lineno, colno, error) {
+    const errorContainer = document.createElement('div');
+    errorContainer.style.color = 'red';
+    errorContainer.style.backgroundColor = '#ffe6e6';
+    errorContainer.style.padding = '10px';
+    errorContainer.style.margin = '10px 0';
+    errorContainer.style.border = '1px solid red';
+    errorContainer.innerText = `Error: ${message}\nSource: ${source}\nLine: ${lineno}, Column: ${colno}\n${error ? 'Details: ' + error.stack : ''}`;
+    document.body.appendChild(errorContainer);
+  };
+</script>
