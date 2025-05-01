@@ -12,6 +12,7 @@ export class SidebarMenuComponent {
   menuItems = [
     { label: 'Upload', link: '/upload' },
     { label: 'My Videos', link: '/videos' },
+    { label: 'test-page', link: '/test-page' },
   ];
 
   toggleMenu() {
